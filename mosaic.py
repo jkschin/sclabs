@@ -92,8 +92,8 @@ def square(arr, gray=False):
             r_n, r_h, r_w, r_d = row_image.shape
             row_image = reshape_row(row_image)
             if last_item:
-                    for _ in range(num_cols-r_n):
-                            row_image = np.concatenate((row_image,np.zeros((height,width,depth))), axis=1)
+                for _ in range(num_cols-r_n):
+                    row_image = np.concatenate((row_image,np.zeros((height,width,depth))), axis=1)
             rows.append(row_image)
     mosaic = reshape_col(rows)
     if gray:
@@ -126,32 +126,22 @@ Example:
 def build_array_from_directory(directory):
     arr = []
     image_name_list = map(lambda f: os.path.join(directory, f), os.listdir(directory))
-    # for image_name in os.listdir(directory):
-    # 	try:
-    # 		image_name_list.append(image_name[:-4]))
-    # 	except ValueError:
-    # 		image_name_list.append(image_name[:-4])
     image_name_list = sorted(image_name_list)
     for image_name in image_name_list:
-            arr.append(scipy.misc.imread(image_name))
+        arr.append(scipy.misc.imread(image_name))
     return np.array(arr)
 
-def test(args):
-    args.input_directory = 'images'
-    args.output_directory = ''
-    args.output_filename = 'square.jpg'
-    arr = build_array_from_directory(args.input_directory)
-    img = square(arr)
-    save_numpy_array_as_image(img, os.path.join(args.output_directory, args.output_filename))
-
 def run(args):
+    print "Reading from: ", args.input_directory
+    print "Writing to: ", args.output_directory
+    print "Output filename: ", args.output_filename
+    print "Shape: ", args.num_rows, args.num_cols
     arr = build_array_from_directory(args.input_directory)
     img = arbitrary_rows_cols(arr, args.num_rows, args.num_cols, gray=False)
     save_numpy_array_as_image(img, os.path.join(args.output_directory, args.output_filename))
 
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
-    parser.add_argument('mode', type=str, help='[test], [mosaic]')
     parser.add_argument('input_directory', default='a', nargs='?', type=str, help='directory of images to mosaic')
     parser.add_argument('output_directory', default='a', nargs='?', type=str, help='output directory of mosaicked image')
     parser.add_argument('output_filename', default='a', nargs='?', type=str, help='output filename')
@@ -161,9 +151,4 @@ def parse_arguments(argv):
 
 if __name__ == "__main__":
     args = parse_arguments(sys.argv[1:])
-    assert args.mode != None, 'provide mode of operation'
-    if args.mode == 'test':
-        test(args)
-    else:
-	run(args)
-
+    run(args)

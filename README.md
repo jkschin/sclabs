@@ -1,6 +1,6 @@
-# sclabs
+# scode
 
-sclabs is my personal code library. 
+scode is my personal code library. 
 
 ## mosaic
 
@@ -8,15 +8,13 @@ mosaic.py contains code to mosaic images. Simply call it by running the followin
 
 	python mosaic.py input_directory output_directory
 
-Or if you want to run the test:
+Sample Images:
 
-	python mosaic.py test
+![3 x 2 Mosaic](https://github.com/jkschin/sclabs/blob/master/assets/images/mosaicked_images/3x2.jpg)	
 
-Sample Image:
+![2 x 3 Mosaic](https://github.com/jkschin/sclabs/blob/master/assets/images/mosaicked_images/2x3.jpg)
 
-![Image of mosaic with 4 squares](https://github.com/jkschin/sclabs/blob/master/assets/images/image_3.jpg)	
-
-![Image of mosaic with 9 squares](https://github.com/jkschin/sclabs/blob/master/assets/images/image_5.jpg)
+![3 x 3 Mosaic](https://github.com/jkschin/sclabs/blob/master/assets/images/mosaicked_images/3x3.jpg)
 
 
 
